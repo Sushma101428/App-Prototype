@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RPM Prototype – Login</title>
-  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="./assets/styles.css" />
 </head>
 <body class="auth-body">
   <main class="auth-card">
-    <img src="assets/logo.png" alt="App logo" class="logo-large" />
+    <img src="./assets/logo.png" alt="App logo" class="logo-large" />
     <h1>Sign in</h1>
 
     <form id="loginForm" aria-label="Login">
@@ -41,10 +41,9 @@
     </form>
 
     <p id="createLinks" class="muted small center mt-12">
-      New Patient? <a href="create-account.html">Create account</a>
+      New Patient? <a href="./create-account.html">Create account</a>
     </p>
 
-    <!-- appears after 3 failed attempts -->
     <p id="forgotRow" class="small center" style="display:none;margin-top:8px">
       <span class="link" id="forgotLink">Forgot password?</span>
     </p>
@@ -87,7 +86,6 @@
     const forgotRow = document.getElementById("forgotRow");
     const forgotLink = document.getElementById("forgotLink");
 
-    // modals
     const invalidModal = document.getElementById("invalidModal");
     const invalidOk = document.getElementById("invalidOk");
     const forgotModal = document.getElementById("forgotModal");
@@ -121,10 +119,9 @@
       patientBox.querySelectorAll("input").forEach(i => i.required = patient);
       providerBox.querySelectorAll("input").forEach(i => i.required = !patient);
       links.innerHTML = patient
-        ? 'New Patient? <a href="create-account.html">Create account</a>'
-        : 'New Provider? <a href="create-provider.html">Create provider</a>';
+        ? 'New Patient? <a href="./create-account.html">Create account</a>'
+        : 'New Provider? <a href="./create-provider.html">Create provider</a>';
 
-      // restore attempts state
       const n = getAttempts(patient ? "patient":"provider");
       forgotRow.style.display = n>=3 ? "block" : "none";
     }
@@ -150,12 +147,10 @@
         resetAttempts("provider");
         login({ role: "provider", id, name: u.name });
       }
-      location.href = "dashboard.html";
+      location.href = "./dashboard.html";
     });
 
     invalidOk.addEventListener("click", ()=> closeModal(invalidModal));
-
-    // forgot password flow
     forgotLink.addEventListener("click", ()=> openModal(forgotModal));
     fpCancel.addEventListener("click", ()=> closeModal(forgotModal));
     fpSend.addEventListener("click", ()=>{
@@ -167,4 +162,3 @@
   </script>
 </body>
 </html>
-
